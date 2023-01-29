@@ -2,7 +2,7 @@ package com.example.itog.service;
 
 import java.util.List;
 import java.util.Objects;
-q
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.itog.models.PledgeTicket;
@@ -20,44 +20,44 @@ public class PledgeTicketServiceImp implements PledgeTicketService {
 
     @Override
     public List<PledgeTicket> fetchPledgeTicketList() {
-        return (List<PledgeTicket>)
-        reppsitory.findAll();
+        return (List<PledgeTicket>) reppsitory.findAll();
     }
 
     @Override
     public PledgeTicket updateDPledgeTicket(PledgeTicket pledgeTicket, Integer pledgeTicketId) {
-        PledgeTicket depDB
-        = reppsitory.findById(pledgeTicketId)
-              .get();
+        PledgeTicket depDB = reppsitory.findById(pledgeTicketId)
+                .get();
 
-    if (Objects.nonNull(pledgeTicket)
-        && !"".equalsIgnoreCase(
-            department.getDepartmentName())) {
-        depDB.setDepartmentName(
-            department.getDepartmentName());
-    }
+        if (Objects.nonNull(pledgeTicket.getFioBorrower())
+                && !"".equalsIgnoreCase(
+                        pledgeTicket.getFioBorrower())) {
+            depDB.setFioBorrower(
+                    pledgeTicket.getFioBorrower());
+        }
 
-    if (Objects.nonNull(
-            department.getDepartmentAddress())
-        && !"".equalsIgnoreCase(
-            department.getDepartmentAddress())) {
-        depDB.setDepartmentAddress(
-            department.getDepartmentAddress());
-    }
+        if (Objects.nonNull(
+                pledgeTicket.getPledgedProperty())
+                && !"".equalsIgnoreCase(
+                        pledgeTicket.getPledgedProperty())) {
+            depDB.setPledgedProperty(
+                    pledgeTicket.getPledgedProperty());
+        }
 
-    if (Objects.nonNull(department.getDepartmentCode())
-        && !"".equalsIgnoreCase(
-            department.getDepartmentCode())) {
-        depDB.setDepartmentCode(
-            department.getDepartmentCode());
-    }
+        if (Objects.nonNull(pledgeTicket.getLoanAmount())) {
+            depDB.setLoanAmount(
+                    pledgeTicket.getLoanAmount());
+        }
+        if (Objects.nonNull(pledgeTicket.getAppraisedValue())) {
+            depDB.setAppraisedValue(
+                    pledgeTicket.getAppraisedValue());
+        }
 
-    return departmentRepository.save(depDB);
+        return reppsitory.save(depDB);
     }
 
     @Override
     public void deletePledgeTicketById(Integer pledgeTicketId) {
-        // TODO Auto-generated method stub
+        reppsitory.deleteById(pledgeTicketId);
 
     }
 
