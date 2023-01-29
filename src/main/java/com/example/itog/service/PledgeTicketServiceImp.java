@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.itog.models.PledgeTicket;
 import com.example.itog.models.repository.PledgeTicketRepository;
 
+@Service
 public class PledgeTicketServiceImp implements PledgeTicketService {
 
     @Autowired
