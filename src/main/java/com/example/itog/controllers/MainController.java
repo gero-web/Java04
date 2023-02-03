@@ -2,8 +2,8 @@ package com.example.itog.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.itog.models.PledgeTicket;
-import com.example.itog.service.PledgeTicketServiceImp;
+import com.example.itog.models.Tovar;
+import com.example.itog.service.TovarServiceImp;
 
 import javax.validation.Valid;
 
@@ -15,30 +15,28 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private PledgeTicketServiceImp rep;
+    private TovarServiceImp rep;
 
-    @PostMapping("/create")
-    public PledgeTicket saveDepartment(
-            @Valid @RequestBody PledgeTicket pledgeTicket) {
-        return rep.savePledgeTicket(pledgeTicket);
+    @PostMapping("/createTovar")
+    public Tovar saveTovar(
+            @Valid @RequestBody Tovar tovar) {
+        return rep.saveTovar(tovar);
     }
 
     @GetMapping("/index")
-    public List<PledgeTicket> getText() {
-        return rep.fetchPledgeTicketList();
+    public List<Tovar> getAllTovar() {
+        return rep.fetchTovarList();
     }
 
-    @PutMapping("/updates/{id}")
-    public PledgeTicket updateDepartment(@RequestBody PledgeTicket pledgeTicket,
-            @PathVariable("id") Integer pledgeTicketId) {
-        return rep.updateDPledgeTicket(
-                pledgeTicket, pledgeTicketId);
+    @PutMapping("/updatesTovars/{id}")
+    public Tovar updateTovar(@RequestBody Tovar tovar,
+        @PathVariable("id") Integer tovarId) {
+        return rep.updateTovar( tovar, tovarId);
     }
 
-    @DeleteMapping("/departments/{id}")
-    public String deleteDepartmentById(@PathVariable("id") Integer id) {
-        rep.deletePledgeTicketById(
-                id);
+    @DeleteMapping("/deleteTovar/{id}")
+    public String deleteTovarById(@PathVariable("id") Integer id) {
+        rep.deleteTovar(id);
         return "Deleted Successfully";
     }
 
